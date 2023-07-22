@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`
+      position: relative;
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
     `
@@ -17,3 +18,11 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1200;
     `
+
+export const ModalLoader = styled.div`
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: -1;
+`

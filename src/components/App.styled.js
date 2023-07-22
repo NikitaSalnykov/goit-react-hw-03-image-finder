@@ -10,5 +10,7 @@ export const AppContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
   }
 `

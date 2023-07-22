@@ -36,6 +36,7 @@ export class App extends Component {
     this.setState({ isLoading: true, loadMore: false, gallery: [], notFoundText: false })
     const resp = await getImages(value, page).then(resp => resp.data)
     this.setState({gallery: resp.hits})
+   
     if (resp.totalHits > page * 12) {
       this.setState({
           loadMore: true,
@@ -44,7 +45,7 @@ export class App extends Component {
     } else if (resp.totalHits === 0) {
       this.setState({
         isLoading: false,
-      notFoundText: true})
+        notFoundText: true})
       } else {
       this.setState({
         loadMore: false,
@@ -54,14 +55,13 @@ export class App extends Component {
   }
 
   handleLoadMore = async () => {
-        this.setState((prevState) => ({
-         page: prevState.page + 1
-         }));
+    this.setState((prevState) => ({
+      page: prevState.page + 1
+      }));
 
     const { value, page } = this.state
     const resp = await getImages(value, page + 1).then(resp => resp.data)
-      
-      this.setState({ gallery: resp.hits })
+    this.setState({ gallery: resp.hits })
     }
 
     render() {

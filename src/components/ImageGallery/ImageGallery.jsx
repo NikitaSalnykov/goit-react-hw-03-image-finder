@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { GalleryList } from './ImageGallery.styled'
-import { getImages } from 'services/pixabayAPI'
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
-
+import PropTypes from 'prop-types'
 
 export const ImageGallery =({gallery, showModal})=>{
   
@@ -19,4 +18,7 @@ export const ImageGallery =({gallery, showModal})=>{
   }
 
 
-
+ImageGallery.propTypes = {
+  gallery: PropTypes.arrayOf(PropTypes.object).isRequired,
+  showModal: PropTypes.func.isRequired
+}

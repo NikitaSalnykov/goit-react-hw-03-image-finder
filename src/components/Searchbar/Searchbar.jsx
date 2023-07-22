@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { HeaderSearchbar, Form } from './Searchbar.styled'
-
+import PropTypes from 'prop-types'
+import Notiflix from 'notiflix'
 
 export class Searchbar extends Component {
   
@@ -16,8 +17,9 @@ export class Searchbar extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.state.value);
-     this.setState({value: ''})
+    if (this.state.value === '') return Notiflix.Notify.failure('Empty input!')
+    this.props.onSubmit(this.state.value.trim());
+    this.setState({value: ''})
   }
 
   render() {
@@ -43,3 +45,7 @@ export class Searchbar extends Component {
 }
 
 export default Searchbar
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+}
