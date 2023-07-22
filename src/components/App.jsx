@@ -20,53 +20,60 @@ export class App extends Component {
     notFoundText: false
   }
 
-  showModal = (largeImgObj) => {
-    this.setState({ ModalActive: true })
-    this.setState({largeImgObj})
-  }
+  async componentDidUpdate(_, prevState) { 
+    const { value, page } = this.state;
 
-  closeModal = () => {
-    this.setState({ModalActive:false})
-  }
-  
-  handleSubmit = async (value) => {
-    this.setState({ value })
-    
-    const { page } = this.state
-    this.setState({ isLoading: true, loadMore: false, gallery: [], notFoundText: false })
-    const resp = await getImages(value, page).then(resp => resp.data)
-    this.setState({gallery: resp.hits})
+    if (prevState.value !== value) {
+      this.setState({ isLoading: true, loadMore: false, gallery: [], notFoundText: false });
+      const resp = await getImages(value, page).then(resp => resp.data);
+      this.setState({ gallery: resp.hits });
    
     if (resp.totalHits > page * 12) {
       this.setState({
-          loadMore: true,
-          isLoading: false
-        })
+        loadMore: true,
+        isLoading: false
+      });
     } else if (resp.totalHits === 0) {
       this.setState({
         isLoading: false,
-        notFoundText: true})
+        notFoundText: true
+      });
       } else {
       this.setState({
         loadMore: false,
-       isLoading: false,
-      })
+        isLoading: false,
+      });
       }
-  }
-
-  handleLoadMore = async () => {
-    this.setState((prevState) => ({
-      page: prevState.page + 1
-      }));
-
-    const { value, page } = this.state
-    const resp = await getImages(value, page + 1).then(resp => resp.data)
-    this.setState({ gallery: resp.hits })
     }
 
+    if (prevState.page !== page) {
+    const resp = await getImages(value, page + 1).then(resp => resp.data)
+      this.setState({ gallery: resp.hits });
+    }
+
+    
+  } 
+
+  showModal = (largeImgObj) => {
+    this.setState({ ModalActive: true });
+    this.setState({ largeImgObj });
+  }
+
+  closeModal = () => {
+    this.setState({ ModalActive: false });
+  }
+
+  handleSubmit = async (value) => {
+    this.setState({ value });
+  };
+
+  handleLoadMore = async () => {
+    this.setState((prevState) => ({ page: prevState.page + 1 }));
+  };
+
     render() {
-      const { loadMore, gallery, ModalActive, largeImgObj, isLoading, notFoundText, value } = this.state
-      const { showModal, handleSubmit, handleLoadMore, closeModal} = this
+      const { loadMore, gallery, ModalActive, largeImgObj, isLoading, notFoundText, value } = this.state;
+      const { showModal, handleSubmit, handleLoadMore, closeModal } = this;
 
       return (
         <AppContainer>

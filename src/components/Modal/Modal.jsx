@@ -6,21 +6,21 @@ import PropTypes from 'prop-types'
 export class Modal extends Component {
 
     componentDidMount() { 
-        window.addEventListener('keydown', this.onEscape)
+        window.addEventListener('keydown', this.handleCloseModal);
     }
     
     componentDidUpdate(prevProps, prevState) { 
-         window.removeEventListener('keydown', this.handleCloseModal)
+        window.removeEventListener('keydown', this.handleCloseModal);
     } 
 
     handleCloseModal = (e) => {
         if (e.key === 'Escape' || e.currentTarget === e.target) {
-            this.props.closeModal()
+        this.props.closeModal();
         }
     }
 
     render() {
-        const { largeImgObj } = this.props
+        const { largeImgObj } = this.props;
         return (
             <Overlay onClick={this.handleCloseModal}>
                 <ModalContainer>
