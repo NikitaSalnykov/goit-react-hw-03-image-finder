@@ -1,51 +1,50 @@
-import React, { Component } from 'react'
-import { HeaderSearchbar, Form } from './Searchbar.styled'
-import PropTypes from 'prop-types'
-import Notiflix from 'notiflix'
+import React, { Component } from 'react';
+import { HeaderSearchbar, Form } from './Searchbar.styled';
+import PropTypes from 'prop-types';
+import Notiflix from 'notiflix';
 
 export class Searchbar extends Component {
-  
   state = {
-    value: ''
-  }
+    value: '',
+  };
 
   handleChange = ({ target }) => {
     this.setState({
-      value: target.value
-    })
-  }
+      value: target.value,
+    });
+  };
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
-    if (this.state.value === '') return Notiflix.Notify.failure('Empty input!')
+    if (this.state.value === '') return Notiflix.Notify.failure('Empty input!');
     this.props.onSubmit(this.state.value.trim());
-    this.setState({value: ''})
-  }
+    this.setState({ value: '' });
+  };
 
   render() {
     return (
-    <HeaderSearchbar>
-    
-    <Form onSubmit={this.onSubmit}>
-    <button type="submit">
-      <span>Search</span>
-    </button>
+      <HeaderSearchbar>
+        <Form onSubmit={this.onSubmit}>
+          <button type="submit">
+            <span>Search</span>
+          </button>
 
-    <input onChange={this.handleChange}
-      type="text"
-      autoComplete="off"
-      autoFocus
+          <input
+            onChange={this.handleChange}
+            type="text"
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
             value={this.state.value}
-    />
-    </Form>
-    </HeaderSearchbar>
-    )
+          />
+        </Form>
+      </HeaderSearchbar>
+    );
   }
 }
 
-export default Searchbar
+export default Searchbar;
 
 Searchbar.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-}
+  onSubmit: PropTypes.func.isRequired,
+};

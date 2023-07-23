@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const AppContainer = styled.div`
   display: grid;
@@ -13,4 +13,4 @@ export const AppContainer = styled.div`
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
   }
-`
+`;
