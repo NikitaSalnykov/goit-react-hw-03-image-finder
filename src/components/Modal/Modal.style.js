@@ -25,4 +25,5 @@ export const ModalLoader = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
+  opacity: ${props => (props.format.endsWith('png') ? 0 : 1)};
 `;
