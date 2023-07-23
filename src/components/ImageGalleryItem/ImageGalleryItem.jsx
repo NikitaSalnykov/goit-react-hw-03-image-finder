@@ -1,9 +1,10 @@
 import React from 'react';
 import { GalleryItem, GalleryItemImg } from './ImageGalleryItem.styled';
 import PropTypes from 'prop-types';
+import { HiSearchCircle } from 'react-icons/hi';
 
 export const ImageGalleryItem = ({ img, largeImageURL, tags, showModal }) => {
-  const cutText = tags.length > 25 ? tags.slice(0, 25) + '...' : tags;
+  const cutTags = tags.length > 25 ? tags.slice(0, 25) + '...' : tags;
   return (
     <GalleryItem>
       <GalleryItemImg
@@ -14,7 +15,8 @@ export const ImageGalleryItem = ({ img, largeImageURL, tags, showModal }) => {
         onClick={() => showModal({ largeImageURL, tags })}
       />
       <p>
-        <b>Tags: </b> {cutText}
+        <HiSearchCircle />
+        {cutTags}
       </p>
     </GalleryItem>
   );

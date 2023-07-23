@@ -34,8 +34,11 @@ export const Form = styled.form`
   border-radius: 3px;
   overflow: hidden;
   & button {
-    display: inline-block;
-    width: 68px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 98px;
     height: 48px;
     border: 0;
     font-size: small;
@@ -48,6 +51,10 @@ export const Form = styled.form`
     outline: none;
     &:hover {
       opacity: 1;
+    }
+    & svg {
+      width: 20px;
+      height: 20px;
     }
   }
   & input {

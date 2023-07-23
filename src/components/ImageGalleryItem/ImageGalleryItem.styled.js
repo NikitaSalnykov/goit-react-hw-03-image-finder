@@ -6,6 +6,8 @@ export const GalleryItem = styled.li`
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   & p {
+    display: flex;
+    gap: 5px;
     position: absolute;
     transform: translateY(-52px);
     z-index: -1;
@@ -13,6 +15,11 @@ export const GalleryItem = styled.li`
     font-family: 'Courier New', Courier, monospace;
     font-weight: 400;
     font-size: 15px;
+  }
+  & svg {
+    fill: blue;
+    width: 20px;
+    height: 20px;
   }
 `;
 
